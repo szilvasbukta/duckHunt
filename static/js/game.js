@@ -41,12 +41,12 @@ function duck() {
 function dog() {
     let xPos = 0,
         right = true,
-        dog = document.getElementById("dog");
+        dog = document.getElementById("dog"),
+        maxWidth = document.querySelector("#container").clientWidth,
+        dogWidth = document.querySelector("#dog").clientWidth;
     dog.style.bottom = 0 + "px";
 
     setInterval(function () {
-        let maxWidth = document.querySelector("#container").clientWidth,
-            dogWidth = document.querySelector("#dog").clientWidth;
         if (xPos >= maxWidth - dogWidth) {
             right = false;
             dog.style.backgroundImage = "url(static/images/dogwalkleft.png)";
