@@ -1,23 +1,18 @@
 body {
-    padding: 80px 20px;
-    background-image: url("../images/backdrop.png");
-    background-repeat: repeat;
-    font-family: 'Acme', sans-serif;
-    color: black;
-}
+    padding: auto;
+    }
 
-.game-cell {
-    cursor: pointer;
-    border: 5px solid black;
-    display: inline-block;
+#container {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../images/backdrop.png");
+    position: center;
+}
+#box {
     width: 50px;
     height: 50px;
-    font-size: 35px;
-    text-align: center;
-    margin: 3px;
-    color: grey;
-    vertical-align: middle;
-    background-color: black;
+    background: red;
+    position: absolute;
 }
 
 navbar {
