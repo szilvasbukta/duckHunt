@@ -27,10 +27,10 @@ window.onload = function () {
             dogWidth = document.querySelector("#dog").clientWidth;
         if (xPosdog >= maxWidth - dogWidth){
             right = false;
-            //document.getElementById("dog").style.backgroundImage = "url('../images/duckright.png')";
+            document.getElementById("dog").style.backgroundImage = "url(static/images/dogwalkleft.png)";
         }
         else if (xPosdog <= 0) {
-            //document.getElementById("dog").style.backgroundImage = "url('../images/dogwalk.png')";
+            document.getElementById("dog").style.backgroundImage = "url(static/images/dogwalkright.png)";
             right = true;
         }
         if (!right) {

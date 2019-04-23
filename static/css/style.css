@@ -18,7 +18,6 @@
 #dog {
     width: 100px;
     height: 100px;
-    background-image: url("../images/dogwalk.png");
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
