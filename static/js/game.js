@@ -1,8 +1,8 @@
 window.onload = function () {
     let xPos = 0,
         yPos = 0,
-        duck = document.getElementById("duck"),
-        t = setInterval(move, 25);
+        duck = document.getElementById("duck");
+    setInterval(move, 25);
 
     function move() {
         if (xPos >= 150) {
@@ -18,14 +18,27 @@ window.onload = function () {
 
     let xPosdog = 0,
         yPosdog = 0,
-        dog = document.getElementById("dog"),
-        time = setInterval(movedog, 1);
+        right = true,
+        dog = document.getElementById("dog");
+    setInterval(movedog, 1);
 
     function movedog() {
         let maxWidth = document.querySelector("#container").clientWidth,
             dogWidth = document.querySelector("#dog").clientWidth;
         if (xPosdog >= maxWidth - dogWidth){
-        } else {
+            right = false;
+            //document.getElementById("dog").style.backgroundImage = "url('../images/duckright.png')";
+        }
+        else if (xPosdog <= 0) {
+            //document.getElementById("dog").style.backgroundImage = "url('../images/dogwalk.png')";
+            right = true;
+        }
+        if (!right) {
+            xPosdog -= 1;
+            dog.style.left = xPosdog + "px";
+            dog.style.bottom = yPosdog + "px";
+        }
+        else {
             xPosdog += 1;
             dog.style.left = xPosdog + "px";
             dog.style.bottom = yPosdog + "px";
