@@ -71,23 +71,23 @@ function duckMovement(duck) {
         let maxWidth = document.getElementById("container").clientWidth,
             maxHeight = document.getElementById("container").clientHeight;
         if (posX >= maxWidth - duckWidth || posY + duckHeight >= maxHeight) {
-            posX = 1;
-            posY = Math.floor(Math.random() * maxHeight);
+            posX = Math.floor(Math.random() * maxWidth);
+            posY = duckHeight;
         } else {
             posX += 1;
             posY += 1;
             duck.style.left = posX + "px";
-            duck.style.top = posY + "px";
+            duck.style.bottom = posY + "px";
         }
-    }, 5);
+    }, 10);
 }
-
 
 function duckClick(duckP) {
     duckP.addEventListener('click', function () {
-        let maxHeight = document.getElementById("container").clientHeight;
-        posX = 1;
-        posY = Math.floor(Math.random() * maxHeight);
+        let maxWidth = document.getElementById("container").clientWidth,
+            duckHeight = duckP.clientHeight;
+        posX = Math.floor(Math.random() * maxWidth);
+        posY = duckHeight;
     });
 }
 
@@ -97,7 +97,6 @@ function duck() {
     duckMovement(duckDiv);
 }
 
-
 function main() {
     window.onload = function () {
         duck();
@@ -105,6 +104,4 @@ function main() {
     };
 }
 
-
 main();
-
