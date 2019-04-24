@@ -31,24 +31,30 @@ function dogAnimation(xPos, right) {
 
 function duckMovement(duck) {
     let xPos = 0,
-        yPos = 0;
+        yPos = 0,
+        duckWidth = document.querySelector("#duck").clientWidth,
+        duckHeight = document.querySelector("#duck").clientHeight;
 
-    setInterval(function () {
-        if (xPos >= 150) {
-            xPos -= 150;
-            yPos -= 150;
+
+    setInterval(function() {
+         let maxWidth = document.getElementById("container").clientWidth,
+             maxHeight = document.getElementById("container").clientHeight;
+         if (xPos >= maxWidth - duckWidth || yPos + duckHeight >= maxHeight) {
+            duck.style.left = 0 + "px";
+            duck.style.top = 0 + "px";
         } else {
             xPos += 1;
             yPos += 1;
             duck.style.left = xPos + "px";
             duck.style.top = yPos + "px";
         }
-    }, 25);
+    }, 1);
 }
 
 function duckClick(duck) {
     duck.addEventListener('click', function () {
-        alert("Duck clicked")
+        duck.style.left = 400 + "px";
+        duck.style.bottom = 50 + "px";
     });
 }
 
@@ -88,8 +94,8 @@ function dog() {
 
 function duck() {
     let duckDiv = document.getElementById("duck");
-    duckClick(duckDiv);
     duckMovement(duckDiv);
+    duckClick(duckDiv);
 }
 
 
