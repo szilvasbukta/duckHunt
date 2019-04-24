@@ -34,6 +34,7 @@ function duck() {
         yPos = 0,
         duck = document.getElementById("duck");
 
+    duckClick(duck);
     setInterval(function () {
         if (xPos >= 150) {
             xPos -= 150;
@@ -47,6 +48,11 @@ function duck() {
     }, 25);
 }
 
+function duckClick(duck) {
+    duck.addEventListener('click', function () {
+        alert("Duck clicked")
+    });
+}
 
 function dog() {
     let xPos = 0,
@@ -73,7 +79,7 @@ function dog() {
             dog.style.left = xPos + "px";
             dogAnimation(xPos, right);
         }
-    }, 1);
+    }, 5);
 }
 
 
