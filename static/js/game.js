@@ -29,11 +29,10 @@ function dogAnimation(xPos, right) {
 }
 
 
-function duck() {
+function duckMovement() {
     let xPos = 0,
         yPos = 0,
         duck = document.getElementById("duck");
-
     setInterval(function () {
         if (xPos >= 150) {
             xPos -= 150;
@@ -48,7 +47,7 @@ function duck() {
 }
 
 
-function dog() {
+function dogMovement() {
     let xPos = 0,
         right = true,
         dog = document.getElementById("dog"),
@@ -74,6 +73,16 @@ function dog() {
             dogAnimation(xPos, right);
         }
     }, 1);
+}
+
+
+function dog() {
+    dogMovement();
+}
+
+
+function duck() {
+    duckMovement();
 }
 
 
