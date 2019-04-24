@@ -29,12 +29,10 @@ function dogAnimation(xPos, right) {
 }
 
 
-function duck() {
+function duckMovement(duck) {
     let xPos = 0,
-        yPos = 0,
-        duck = document.getElementById("duck");
+        yPos = 0;
 
-    duckClick(duck);
     setInterval(function () {
         if (xPos >= 150) {
             xPos -= 150;
@@ -54,7 +52,7 @@ function duckClick(duck) {
     });
 }
 
-function dog() {
+function dogMovement() {
     let xPos = 0,
         right = true,
         dog = document.getElementById("dog"),
@@ -80,6 +78,18 @@ function dog() {
             dogAnimation(xPos, right);
         }
     }, 5);
+}
+
+
+function dog() {
+    dogMovement();
+}
+
+
+function duck() {
+    let duckDiv = document.getElementById("duck");
+    duckClick(duckDiv);
+    duckMovement(duckDiv);
 }
 
 
