@@ -1,3 +1,6 @@
+let posX = 0,
+    posY = 0;
+
 function dogAnimation(xPos, right) {
     let dog = document.getElementById("dog");
 
@@ -28,36 +31,6 @@ function dogAnimation(xPos, right) {
     }
 }
 
-
-function duckMovement(duck) {
-    let xPos = 0,
-        yPos = 0,
-        duckWidth = document.querySelector("#duck").clientWidth,
-        duckHeight = document.querySelector("#duck").clientHeight;
-
-
-    setInterval(function() {
-         let maxWidth = document.getElementById("container").clientWidth,
-             maxHeight = document.getElementById("container").clientHeight;
-         if (xPos >= maxWidth - duckWidth || yPos + duckHeight >= maxHeight) {
-            duck.style.left = 0 + "px";
-            duck.style.top = 0 + "px";
-        } else {
-            xPos += 1;
-            yPos += 1;
-            duck.style.left = xPos + "px";
-            duck.style.top = yPos + "px";
-        }
-    }, 1);
-}
-
-function duckClick(duck) {
-    duck.addEventListener('click', function () {
-        duck.style.left = 400 + "px";
-        duck.style.bottom = 50 + "px";
-    });
-}
-
 function dogMovement() {
     let xPos = 0,
         right = true,
@@ -86,16 +59,42 @@ function dogMovement() {
     }, 5);
 }
 
-
 function dog() {
     dogMovement();
 }
 
+function duckMovement(duck) {
+    let duckWidth = duck.clientWidth,
+        duckHeight = duck.clientHeight;
+
+    setInterval(function () {
+        let maxWidth = document.getElementById("container").clientWidth,
+            maxHeight = document.getElementById("container").clientHeight;
+        if (posX >= maxWidth - duckWidth || posY + duckHeight >= maxHeight) {
+            posX = 1;
+            posY = Math.floor(Math.random() * maxHeight);
+        } else {
+            posX += 1;
+            posY += 1;
+            duck.style.left = posX + "px";
+            duck.style.top = posY + "px";
+        }
+    }, 5);
+}
+
+
+function duckClick(duckP) {
+    duckP.addEventListener('click', function () {
+        let maxHeight = document.getElementById("container").clientHeight;
+        posX = 1;
+        posY = Math.floor(Math.random() * maxHeight);
+    });
+}
 
 function duck() {
     let duckDiv = document.getElementById("duck");
-    duckMovement(duckDiv);
     duckClick(duckDiv);
+    duckMovement(duckDiv);
 }
 
 
