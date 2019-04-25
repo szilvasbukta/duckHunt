@@ -59,11 +59,11 @@ function dogMovement() {
         if (right) {
             xPos += 1;
             dog.style.left = xPos + "px";
-            dogAnimation(dog ,xPos, right); // arg[0] = dog new
+            dogAnimation(dog ,xPos, right);
         } else {
             xPos -= 1;
             dog.style.left = xPos + "px";
-            dogAnimation(dog, xPos, right); // arg[0] = dog new
+            dogAnimation(dog, xPos, right);
         }
     }, 5);
 }
@@ -79,7 +79,7 @@ function duckAnimation(duckDiv, xPos, yPos, x, y, r) {
         case -1:
             switch (y) {
                 case 0:
-                    switch (xPos % 100) { // 0
+                    switch (xPos % 100) {
                         case 0:
                             duckDiv.style.background = ["url(static/images/duckblueleft.png","url(static/images/duckleft.png"][r];
                             break;
@@ -88,7 +88,7 @@ function duckAnimation(duckDiv, xPos, yPos, x, y, r) {
                             break;
                     } break;
                 case 1:
-                    switch (yPos % 100) { // 0
+                    switch (yPos % 100) {
                         case 0:
                             duckDiv.style.background = ["url(static/images/duckleftup.png)","url(static/images/duckblueleftup.png"][r];
                             break;
@@ -100,9 +100,9 @@ function duckAnimation(duckDiv, xPos, yPos, x, y, r) {
         case 0: // 180 Done
             switch (y) {
                 case 0:
-                    break; // there is no 0:0 dir
+                    break;
                 case 1:
-                    switch (yPos % 100) { // 0
+                    switch (yPos % 100) {
                         case 0:
                             duckDiv.style.background = ["url(static/images/duckleftup.png)","url(static/images/duckrightup.png"][r];
                             break;
@@ -114,7 +114,7 @@ function duckAnimation(duckDiv, xPos, yPos, x, y, r) {
         case 1:
             switch (y) {
                 case 0:
-                    switch (xPos % 100) { // 0
+                    switch (xPos % 100) {
                         case 0:
                             duckDiv.style.background = ["url(static/images/duckblueright.png","url(static/images/duckright.png"][r];
                             break;
@@ -123,7 +123,7 @@ function duckAnimation(duckDiv, xPos, yPos, x, y, r) {
                             break;
                     } break;
                 case 1:
-                    switch (yPos % 100) { // 0
+                    switch (yPos % 100) {
                         case 0:
                             duckDiv.style.background = ["url(static/images/duckrightup.png)","url(static/images/duckbluerightup.png"][r];
                             break;
@@ -154,6 +154,8 @@ function duckMovement(duck) {
         if (xPos >= maxWidth - duckWidth || xPos <= 0 || yPos + duckHeight >= maxHeight) {
             lifePoint();
             if (life <= 0) {
+                // let loseRound = new Audio("static/sounds/loseRound.wav");
+                // loseRound.play();
                 window.location.href = "/"
             }
             parameters = randomPos(duck, duckWidth, duckHeight);
@@ -174,6 +176,8 @@ function duckMovement(duck) {
 
     duck.addEventListener('click', function () {
         xPos = maxWidth;
+        let blast = new Audio("static/sounds/blast.wav");
+        blast.play();
         scorePoint();
     });
 }
