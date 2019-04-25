@@ -10,8 +10,7 @@ function randomInt(start, end) {
 }
 
 
-function dogAnimation(xPos, right) {
-    let dog = document.getElementById("dog");
+function dogAnimation(dog, xPos, right) {
 
     if (right) {
         switch (xPos % 150) {
@@ -60,11 +59,11 @@ function dogMovement() {
         if (right) {
             xPos += 1;
             dog.style.left = xPos + "px";
-            dogAnimation(xPos, right);
+            dogAnimation(dog ,xPos, right); // arg[0] = dog new
         } else {
             xPos -= 1;
             dog.style.left = xPos + "px";
-            dogAnimation(xPos, right);
+            dogAnimation(dog, xPos, right); // arg[0] = dog new
         }
     }, 5);
 }
@@ -75,14 +74,78 @@ function dog() {
 }
 
 
+function duckAnimation(duckDiv, xPos, yPos, x, y, r) {
+    switch (x) {
+        case -1:
+            switch (y) {
+                case 0:
+                    switch (xPos % 100) { // 0
+                        case 0:
+                            duckDiv.style.background = ["url(static/images/duckblueleft.png","url(static/images/duckleft.png"][r];
+                            break;
+                        case 50:
+                            duckDiv.style.background = ["url(static/images/duckblueleft2.png)","url(static/images/duckleft2.png"][r];
+                            break;
+                    } break;
+                case 1:
+                    switch (yPos % 100) { // 0
+                        case 0:
+                            duckDiv.style.background = ["url(static/images/duckleftup.png)","url(static/images/duckblueleftup.png"][r];
+                            break;
+                        case 50:
+                            duckDiv.style.background = ["url(static/images/duckleftup2.png)","url(static/images/duckblueleftup2.png"][r];
+                            break;
+                    } break;
+            } break;
+        case 0: // 180 Done
+            switch (y) {
+                case 0:
+                    break; // there is no 0:0 dir
+                case 1:
+                    switch (yPos % 100) { // 0
+                        case 0:
+                            duckDiv.style.background = ["url(static/images/duckleftup.png)","url(static/images/duckrightup.png"][r];
+                            break;
+                        case 50:
+                            duckDiv.style.background = ["url(static/images/duckleftup2.png)","url(static/images/duckrightup2.png"][r];
+                            break;
+                    } break;
+            } break;
+        case 1:
+            switch (y) {
+                case 0:
+                    switch (xPos % 100) { // 0
+                        case 0:
+                            duckDiv.style.background = ["url(static/images/duckblueright.png","url(static/images/duckright.png"][r];
+                            break;
+                        case 50:
+                            duckDiv.style.background = ["url(static/images/duckblueright2.png)","url(static/images/duckright2.png"][r];
+                            break;
+                    } break;
+                case 1:
+                    switch (yPos % 100) { // 0
+                        case 0:
+                            duckDiv.style.background = ["url(static/images/duckrightup.png)","url(static/images/duckbluerightup.png"][r];
+                            break;
+                        case 50:
+                            duckDiv.style.background = ["url(static/images/duckrightup2.png)","url(static/images/duckbluerightup2.png"][r];
+                            break;
+                    } break;
+            } break;
+    }
+}
+
 function duckMovement(duck) {
     let maxWidth = document.getElementById("container").clientWidth,
         maxHeight = document.getElementById("container").clientHeight,
         duckWidth = duck.clientWidth,
         duckHeight = duck.clientHeight,
         parameters = randomPos(duck, duckWidth, duckHeight),
-        xPos = 0,
-        yPos = 0;
+        xPos = parameters[0],
+        yPos = parameters[1],
+        x = parameters[2],
+        y = parameters[3],
+        r = parameters[4];
 
 
     setInterval(function () {
@@ -96,11 +159,15 @@ function duckMovement(duck) {
             parameters = randomPos(duck, duckWidth, duckHeight);
             xPos = parameters[0];
             yPos = parameters[1];
+            x = parameters[2];
+            y = parameters[3];
+            r = parameters[4];
         } else {
-            xPos += parameters[2];
-            yPos += parameters[3];
+            xPos += x;
+            yPos += y;
             duck.style.left = xPos + "px";
             duck.style.bottom = yPos + "px";
+            duckAnimation(duck, xPos, yPos, x, y, r)
         }
     }, 5);
 
@@ -116,6 +183,7 @@ function randomPos(duck, duckWidth, duckHeight) {
     let maxWidth = document.getElementById("container").clientWidth,
         maxHeight = document.getElementById("container").clientHeight,
         side = randomInt(0, 1),
+        randomAni = randomInt(0, 1),
         xPos, yPos, x, y;
         switch (side) {
             case 0:
@@ -133,7 +201,7 @@ function randomPos(duck, duckWidth, duckHeight) {
                 break;
         }
 
-    return [xPos, yPos, x, y];
+    return [xPos, yPos, x, y, randomAni];
 }
 
 
