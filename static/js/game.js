@@ -1,3 +1,8 @@
+function randomInt(start, end) {
+    return Math.floor(Math.random() * (1+end-start))+start;
+}
+
+
 function dogAnimation(xPos, right) {
     let dog = document.getElementById("dog");
 
@@ -64,35 +69,59 @@ function dog() {
 
 
 function duckMovement(duck) {
-    let duckWidth = duck.clientWidth,
+    let maxWidth = document.getElementById("container").clientWidth,
+        maxHeight = document.getElementById("container").clientHeight,
+        duckWidth = duck.clientWidth,
         duckHeight = duck.clientHeight,
+        parameters = randomPos(duck, duckWidth, duckHeight),
         xPos = 0,
-        yPos = 0,
-        x = 1,
-        y = 1;
+        yPos = 0;
 
 
     setInterval(function () {
-        let maxWidth = document.getElementById("container").clientWidth,
-            maxHeight = document.getElementById("container").clientHeight;
-        if (xPos >= maxWidth - duckWidth || yPos + duckHeight >= maxHeight) {
-            xPos = Math.floor(Math.random() * maxWidth);
-            yPos = duckHeight;
+        maxWidth = document.getElementById("container").clientWidth;
+        maxHeight = document.getElementById("container").clientHeight;
+        if (xPos >= maxWidth - duckWidth || xPos <= 0 || yPos + duckHeight >= maxHeight) {
+            parameters = randomPos(duck, duckWidth, duckHeight);
+            xPos = parameters[0];
+            yPos = parameters[1];
         } else {
-            xPos += x;
-            yPos += y;
+            xPos += parameters[2];
+            yPos += parameters[3];
             duck.style.left = xPos + "px";
             duck.style.bottom = yPos + "px";
         }
     }, 5);
 
+
     duck.addEventListener('click', function () {
-        let maxWidth = document.getElementById("container").clientWidth,
-            duckHeight = duck.clientHeight;
-        xPos = Math.floor(Math.random() * maxWidth);
-        yPos = duckHeight;
-        x = 0;
+        xPos = maxWidth;
     });
+}
+
+
+function randomPos(duck, duckWidth, duckHeight) {
+    let maxWidth = document.getElementById("container").clientWidth,
+        maxHeight = document.getElementById("container").clientHeight,
+        side = randomInt(0, 1),
+        xPos, yPos, x, y;
+        switch (side) {
+            case 0:
+                xPos = randomInt(1, maxWidth-duckWidth-1);
+                yPos = duckHeight;
+                x = [-1, 0, 1][randomInt(0, 2)];
+                y = 1;
+                break;
+            case 1:
+                let r = randomInt(0, 1);
+                xPos = [1, maxWidth-duckWidth-1][r];
+                yPos = randomInt(duckHeight, maxHeight-duckHeight*2-1);
+                x = [1, -1][r];
+                y = 0;
+                break;
+        }
+
+    return [xPos, yPos, x, y];
 }
 
 
