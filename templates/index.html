@@ -1,7 +1,11 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <form action="/game" method="GET">
-        <button type="submit" class="block"></button>
-    </form>
+    <a href="/game">
+        <div id="menuContainer">
+            <audio autoplay loop>
+                <source src="static/sounds/startGame.wav" type="audio/wav">
+            </audio>
+        </div>
+    </a>
 {% endblock %}

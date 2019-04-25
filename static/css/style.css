@@ -6,6 +6,16 @@
     background-size: contain;
     position: center;
 }
+
+#menuContainer {
+    cursor: grab;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../images/duckhuntmain.jpg");
+    background-size: auto;
+    position: center;
+}
+
 #duck {
     width: 75px;
     height: 75px;
@@ -28,11 +38,6 @@ navbar {
     background-color: transparent;
 }
 
-body {
-    background-image: url("../images/duckhuntmain.jpg");
-    background-size: auto;
-    position: center;
-}
 
 .block {
     display: block;
