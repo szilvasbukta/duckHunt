@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -10,10 +10,7 @@ def index():
 
 @app.route('/game')
 def game():
-    row_num = int(request.args.get('row-num', 3))
-    col_num = int(request.args.get('col-num', 3))
-    win_size = int(request.args.get('win-size', 3))
-    return render_template('game.html', row_num=row_num, col_num=col_num, win_size=win_size)
+    return render_template('game.html')
 
 
 if __name__ == '__main__':
