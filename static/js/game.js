@@ -1,3 +1,6 @@
+let score = 0,
+    life = 11;
+
 function randomInt(start, end) {
     return Math.floor(Math.random() * (1+end-start))+start;
 }
@@ -82,6 +85,7 @@ function duckMovement(duck) {
         maxWidth = document.getElementById("container").clientWidth;
         maxHeight = document.getElementById("container").clientHeight;
         if (xPos >= maxWidth - duckWidth || xPos <= 0 || yPos + duckHeight >= maxHeight) {
+            lifePoint();
             parameters = randomPos(duck, duckWidth, duckHeight);
             xPos = parameters[0];
             yPos = parameters[1];
@@ -96,6 +100,7 @@ function duckMovement(duck) {
 
     duck.addEventListener('click', function () {
         xPos = maxWidth;
+        scorePoint();
     });
 }
 
@@ -128,6 +133,24 @@ function randomPos(duck, duckWidth, duckHeight) {
 function duck() {
     let duckDiv = document.getElementById("duck");
     duckMovement(duckDiv);
+}
+
+function lifePoint() {
+    life -= 1;
+    let lifeBoard = document.getElementById("lifePoint"),
+        newLifeBoard = "Lives: "+life;
+    lifeBoard.innerHTML = newLifeBoard;
+}
+
+function scorePoint() {
+    score += 1;
+    life += 1;
+    let scoreBoard = document.getElementById("score"),
+        PlifeBoard = document.getElementById("lifePoint"),
+        newScoreBoard = "Scores: "+ score,
+        PnewLifeBoard = "Lives: "+ life;
+    scoreBoard.innerHTML = newScoreBoard;
+    PlifeBoard.innerHTML = PnewLifeBoard;
 }
 
 
