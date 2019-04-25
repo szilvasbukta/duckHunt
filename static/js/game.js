@@ -86,6 +86,9 @@ function duckMovement(duck) {
         maxHeight = document.getElementById("container").clientHeight;
         if (xPos >= maxWidth - duckWidth || xPos <= 0 || yPos + duckHeight >= maxHeight) {
             lifePoint();
+            if (life <= 0) {
+                window.location.href = "/"
+            }
             parameters = randomPos(duck, duckWidth, duckHeight);
             xPos = parameters[0];
             yPos = parameters[1];
