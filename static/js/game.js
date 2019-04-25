@@ -1,6 +1,3 @@
-let posX = 0,
-    posY = 0;
-
 function dogAnimation(xPos, right) {
     let dog = document.getElementById("dog");
 
@@ -31,6 +28,7 @@ function dogAnimation(xPos, right) {
     }
 }
 
+
 function dogMovement() {
     let xPos = 0,
         right = true,
@@ -59,43 +57,50 @@ function dogMovement() {
     }, 5);
 }
 
+
 function dog() {
     dogMovement();
 }
 
+
 function duckMovement(duck) {
     let duckWidth = duck.clientWidth,
-        duckHeight = duck.clientHeight;
+        duckHeight = duck.clientHeight,
+        xPos = 0,
+        yPos = 0,
+        x = 1,
+        y = 1;
+
 
     setInterval(function () {
         let maxWidth = document.getElementById("container").clientWidth,
             maxHeight = document.getElementById("container").clientHeight;
-        if (posX >= maxWidth - duckWidth || posY + duckHeight >= maxHeight) {
-            posX = Math.floor(Math.random() * maxWidth);
-            posY = duckHeight;
+        if (xPos >= maxWidth - duckWidth || yPos + duckHeight >= maxHeight) {
+            xPos = Math.floor(Math.random() * maxWidth);
+            yPos = duckHeight;
         } else {
-            posX += 1;
-            posY += 1;
-            duck.style.left = posX + "px";
-            duck.style.bottom = posY + "px";
+            xPos += x;
+            yPos += y;
+            duck.style.left = xPos + "px";
+            duck.style.bottom = yPos + "px";
         }
-    }, 10);
-}
+    }, 5);
 
-function duckClick(duckP) {
-    duckP.addEventListener('click', function () {
+    duck.addEventListener('click', function () {
         let maxWidth = document.getElementById("container").clientWidth,
-            duckHeight = duckP.clientHeight;
-        posX = Math.floor(Math.random() * maxWidth);
-        posY = duckHeight;
+            duckHeight = duck.clientHeight;
+        xPos = Math.floor(Math.random() * maxWidth);
+        yPos = duckHeight;
+        x = 0;
     });
 }
 
+
 function duck() {
     let duckDiv = document.getElementById("duck");
-    duckClick(duckDiv);
     duckMovement(duckDiv);
 }
+
 
 function main() {
     window.onload = function () {
@@ -103,5 +108,6 @@ function main() {
         dog();
     };
 }
+
 
 main();
