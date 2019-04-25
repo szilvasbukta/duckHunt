@@ -150,7 +150,7 @@ function scorePoint() {
     life += 1;
     let scoreBoard = document.getElementById("score"),
         PlifeBoard = document.getElementById("lifePoint"),
-        newScoreBoard = "Scores: "+ score,
+        newScoreBoard = "Score Points: "+ score,
         PnewLifeBoard = "Lives: "+ life;
     scoreBoard.innerHTML = newScoreBoard;
     PlifeBoard.innerHTML = PnewLifeBoard;

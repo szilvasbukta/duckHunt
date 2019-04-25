@@ -35,7 +35,15 @@
 }
 
 #lifePoint {
+    text-shadow: 4px 4px black;
     color: red;
     font-weight: bold;
     font-size: xx-large;
+}
+
+#score {
+    text-shadow: 4px 4px black;
+    font-weight: bold;
+    font-size: x-large;
+    color: white;
 }
