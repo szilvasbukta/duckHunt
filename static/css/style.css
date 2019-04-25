@@ -47,3 +47,10 @@
     font-size: x-large;
     color: white;
 }
+
+#highScore {
+    text-shadow: 4px 4px black;
+    font-weight: bold;
+    font-size: xx-large;
+    color: white
+}

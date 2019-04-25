@@ -1,5 +1,9 @@
 let score = 0,
-    life = 11;
+    life = 11,
+    highScore = 0;
+
+highScore = localStorage.getItem("highScore");
+
 
 function randomInt(start, end) {
     return Math.floor(Math.random() * (1+end-start))+start;
@@ -148,17 +152,30 @@ function lifePoint() {
 function scorePoint() {
     score += 1;
     life += 1;
+    if (score > highScore) {
+        highScore = score;
+        localStorage.setItem("highScore", score);
+    }
     let scoreBoard = document.getElementById("score"),
         PlifeBoard = document.getElementById("lifePoint"),
+        hScoreBoard = document.getElementById("highScore"),
         newScoreBoard = "Score Points: "+ score,
-        PnewLifeBoard = "Lives: "+ life;
+        PnewLifeBoard = "Lives: "+ life,
+        newHScoreBoard = "High Score: " + highScore;
     scoreBoard.innerHTML = newScoreBoard;
     PlifeBoard.innerHTML = PnewLifeBoard;
+    hScoreBoard.innerHTML = newHScoreBoard;
 }
 
+function highScoreCheck() {
+    let hScoreBoard = document.getElementById("highScore"),
+    newHScoreBoard = "High Score: " + highScore;
+    hScoreBoard.innerHTML = newHScoreBoard;
+}
 
 function main() {
     window.onload = function () {
+        highScoreCheck();
         duck();
         dog();
     };
