@@ -230,7 +230,7 @@ function randomPos(duck, duckWidth, duckHeight) {
         case 1:
             let r = randomInt(0, 1);
             xPos = [20, maxWidth - duckWidth - 20][r];
-            yPos = randomInt(duckHeight, maxHeight - duckHeight * 2);
+            yPos = randomInt(duckHeight*2, maxHeight - duckHeight * 2);
             x = [1, -1][r];
             y = 0;
             break;
