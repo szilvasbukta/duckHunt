@@ -6,7 +6,7 @@ highScore = localStorage.getItem("highScore");
 
 
 function randomInt(start, end) {
-    return Math.floor(Math.random() * (1+end-start))+start;
+    return Math.floor(Math.random() * (1 + end - start)) + start;
 }
 
 
@@ -59,7 +59,7 @@ function dogMovement() {
         if (right) {
             xPos += 1;
             dog.style.left = xPos + "px";
-            dogAnimation(dog ,xPos, right);
+            dogAnimation(dog, xPos, right);
         } else {
             xPos -= 1;
             dog.style.left = xPos + "px";
@@ -81,59 +81,88 @@ function duckAnimation(duckDiv, xPos, yPos, x, y, r) {
                 case 0:
                     switch (xPos % 100) {
                         case 0:
-                            duckDiv.style.background = ["url(static/images/duckblueleft.png","url(static/images/duckleft.png"][r];
+                            duckDiv.style.background = ["url(static/images/duckblueleft.png", "url(static/images/duckleft.png"][r];
+                            duckDiv.style.height = "50px";
+                            duckDiv.style.width = "80px";
                             break;
                         case 50:
-                            duckDiv.style.background = ["url(static/images/duckblueleft2.png)","url(static/images/duckleft2.png"][r];
+                            duckDiv.style.background = ["url(static/images/duckblueleft2.png)", "url(static/images/duckleft2.png"][r];
+                            duckDiv.style.height = "50px";
+                            duckDiv.style.width = "80px";
                             break;
-                    } break;
+                    }
+                    break;
                 case 1:
                     switch (yPos % 100) {
                         case 0:
-                            duckDiv.style.background = ["url(static/images/duckleftup.png)","url(static/images/duckblueleftup.png"][r];
+                            duckDiv.style.background = ["url(static/images/duckleftup.png)", "url(static/images/duckblueleftup.png"][r];
+                            duckDiv.style.height = "76px";
+                            duckDiv.style.width = "62px";
                             break;
                         case 50:
-                            duckDiv.style.background = ["url(static/images/duckleftup2.png)","url(static/images/duckblueleftup2.png"][r];
+                            duckDiv.style.background = ["url(static/images/duckleftup2.png)", "url(static/images/duckblueleftup2.png"][r];
+                            duckDiv.style.height = "76px";
+                            duckDiv.style.width = "62px";
                             break;
-                    } break;
-            } break;
-        case 0: // 180 Done
+                    }
+                    break;
+            }
+            break;
+        case 0:
             switch (y) {
                 case 0:
                     break;
                 case 1:
                     switch (yPos % 100) {
                         case 0:
-                            duckDiv.style.background = ["url(static/images/duckleftup.png)","url(static/images/duckrightup.png"][r];
+                            duckDiv.style.background = ["url(static/images/duckleftup.png)", "url(static/images/duckrightup.png"][r];
+                            duckDiv.style.height = "76px";
+                            duckDiv.style.width = "62px";
                             break;
                         case 50:
-                            duckDiv.style.background = ["url(static/images/duckleftup2.png)","url(static/images/duckrightup2.png"][r];
+                            duckDiv.style.background = ["url(static/images/duckleftup2.png)", "url(static/images/duckrightup2.png"][r];
+                            duckDiv.style.height = "76px";
+                            duckDiv.style.width = "62px";
                             break;
-                    } break;
-            } break;
+                    }
+                    break;
+            }
+            break;
         case 1:
             switch (y) {
                 case 0:
                     switch (xPos % 100) {
                         case 0:
-                            duckDiv.style.background = ["url(static/images/duckblueright.png","url(static/images/duckright.png"][r];
+                            duckDiv.style.background = ["url(static/images/duckblueright.png", "url(static/images/duckright.png"][r];
+                            duckDiv.style.height = "50px";
+                            duckDiv.style.width = "80px";
                             break;
                         case 50:
-                            duckDiv.style.background = ["url(static/images/duckblueright2.png)","url(static/images/duckright2.png"][r];
+                            duckDiv.style.background = ["url(static/images/duckblueright2.png)", "url(static/images/duckright2.png"][r];
+                            duckDiv.style.height = "50px";
+                            duckDiv.style.width = "80px";
                             break;
-                    } break;
+                    }
+                    break;
                 case 1:
                     switch (yPos % 100) {
                         case 0:
-                            duckDiv.style.background = ["url(static/images/duckrightup.png)","url(static/images/duckbluerightup.png"][r];
+                            duckDiv.style.background = ["url(static/images/duckrightup.png)", "url(static/images/duckbluerightup.png"][r];
+                            duckDiv.style.height = "76px";
+                            duckDiv.style.width = "62px";
                             break;
                         case 50:
-                            duckDiv.style.background = ["url(static/images/duckrightup2.png)","url(static/images/duckbluerightup2.png"][r];
+                            duckDiv.style.background = ["url(static/images/duckrightup2.png)", "url(static/images/duckbluerightup2.png"][r];
+                            duckDiv.style.height = "76px";
+                            duckDiv.style.width = "62px";
                             break;
-                    } break;
-            } break;
+                    }
+                    break;
+            }
+            break;
     }
 }
+
 
 function duckMovement(duck) {
     let maxWidth = document.getElementById("container").clientWidth,
@@ -149,6 +178,8 @@ function duckMovement(duck) {
 
 
     setInterval(function () {
+        duckWidth = duck.clientWidth;
+        duckHeight = duck.clientHeight;
         maxWidth = document.getElementById("container").clientWidth;
         maxHeight = document.getElementById("container").clientHeight;
         if (xPos >= maxWidth - duckWidth || xPos <= 0 || yPos + duckHeight >= maxHeight) {
@@ -175,7 +206,7 @@ function duckMovement(duck) {
 
 
     duck.addEventListener('click', function () {
-        xPos = maxWidth;
+        y = maxHeight;
         let blast = new Audio("static/sounds/blast.wav");
         blast.play();
         scorePoint();
@@ -189,21 +220,21 @@ function randomPos(duck, duckWidth, duckHeight) {
         side = randomInt(0, 1),
         randomAni = randomInt(0, 1),
         xPos, yPos, x, y;
-        switch (side) {
-            case 0:
-                xPos = randomInt(1, maxWidth-duckWidth-1);
-                yPos = duckHeight;
-                x = [-1, 0, 1][randomInt(0, 2)];
-                y = 1;
-                break;
-            case 1:
-                let r = randomInt(0, 1);
-                xPos = [1, maxWidth-duckWidth-1][r];
-                yPos = randomInt(duckHeight, maxHeight-duckHeight*2-1);
-                x = [1, -1][r];
-                y = 0;
-                break;
-        }
+    switch (side) {
+        case 0:
+            xPos = randomInt(20, maxWidth - duckWidth - 20);
+            yPos = duckHeight;
+            x = [-1, 0, 1][randomInt(0, 2)];
+            y = 1;
+            break;
+        case 1:
+            let r = randomInt(0, 1);
+            xPos = [20, maxWidth - duckWidth - 20][r];
+            yPos = randomInt(duckHeight, maxHeight - duckHeight * 2);
+            x = [1, -1][r];
+            y = 0;
+            break;
+    }
 
     return [xPos, yPos, x, y, randomAni];
 }
@@ -214,36 +245,49 @@ function duck() {
     duckMovement(duckDiv);
 }
 
+
 function lifePoint() {
     life -= 1;
-    let lifeBoard = document.getElementById("lifePoint"),
-        newLifeBoard = "Lives: "+life;
-    lifeBoard.innerHTML = newLifeBoard;
+    let lifeBoard = document.getElementById("lifePoint");
+    lifeBoard.innerHTML = "Lives: " + life;
 }
+
+
+function spawn() {
+    let container = document.getElementById("container"),
+        node = document.createElement("div");
+    node.setAttribute("id", "duck" + score);
+    container.appendChild(node);
+    duckMovement(document.getElementById("duck" + score))
+}
+
 
 function scorePoint() {
     score += 1;
     life += 1;
+    if (score % 5 === 0 && score !== 0 && score < 16) {
+        spawn();
+    } else if (score / 10 === 1) {
+        duckMovement(document.getElementById("duck2"))
+    }
     if (score > highScore) {
         highScore = score;
         localStorage.setItem("highScore", score);
     }
     let scoreBoard = document.getElementById("score"),
-        PlifeBoard = document.getElementById("lifePoint"),
-        hScoreBoard = document.getElementById("highScore"),
-        newScoreBoard = "Score Points: "+ score,
-        PnewLifeBoard = "Lives: "+ life,
-        newHScoreBoard = "High Score: " + highScore;
-    scoreBoard.innerHTML = newScoreBoard;
-    PlifeBoard.innerHTML = PnewLifeBoard;
-    hScoreBoard.innerHTML = newHScoreBoard;
+        pLifeBoard = document.getElementById("lifePoint"),
+        hScoreBoard = document.getElementById("highScore");
+    scoreBoard.innerHTML = "Score Points: " + score;
+    pLifeBoard.innerHTML = "Lives: " + life;
+    hScoreBoard.innerHTML = "Score Points: " + score;
 }
 
+
 function highScoreCheck() {
-    let hScoreBoard = document.getElementById("highScore"),
-    newHScoreBoard = "High Score: " + highScore;
-    hScoreBoard.innerHTML = newHScoreBoard;
+    let hScoreBoard = document.getElementById("highScore");
+    hScoreBoard.innerHTML = "High Score: " + highScore;
 }
+
 
 function main() {
     window.onload = function () {

@@ -12,16 +12,13 @@
     width: 100vw;
     height: 100vh;
     background-image: url("../images/duckhuntmain.jpg");
-    background-size: auto;
-    position: center;
+    background-size: contain;
 }
 
-#duck {
-    width: 75px;
-    height: 75px;
+#duck, #duck5, #duck10, #duck15  {
+    width: 1px;
+    height: 1px;
     background-image: url("../images/duckright.png");
-    background-position: center;
-    background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
 }
