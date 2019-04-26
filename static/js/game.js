@@ -279,7 +279,7 @@ function scorePoint() {
         hScoreBoard = document.getElementById("highScore");
     scoreBoard.innerHTML = "Score Points: " + score;
     pLifeBoard.innerHTML = "Lives: " + life;
-    hScoreBoard.innerHTML = "Score Points: " + score;
+    hScoreBoard.innerHTML = "High Score: " + highScore;
 }
 
 
